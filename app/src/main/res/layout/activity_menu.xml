@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back_white"
+            app:tint="@color/colorOnBackground"/>
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rincian split bill"
+            android:textColor="@color/colorOnBackground"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/btnLanjut"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Receipt Photo Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                android:layout_marginBottom="16dp">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Klik gambar di bawah buat liat foto struk lebih jelas."
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="12dp"/>
+                        
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        
+                        <ImageView
+                            android:id="@+id/imgReceipt"
+                            android:layout_width="60dp"
+                            android:layout_height="80dp"
+                            android:scaleType="centerCrop"
+                            android:background="#444444"
+                            android:src="@android:drawable/ic_menu_gallery"/>
+                            
+                        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+                        
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnFotoUlang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="Foto ulang"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:backgroundTint="@color/colorDivider"
+                            android:textColor="@color/colorOnBackground"
+                            app:icon="@android:drawable/ic_menu_camera"
+                            app:iconTint="@color/colorOnBackground"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Main Items Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorCardBackground">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    
+                    <!-- Items Recycler -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"/>
+                        
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorDivider"
+                        android:layout_marginVertical="16dp"/>
+                        
+                    <!-- Summary -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Subtotal"
+                            android:textColor="@color/colorTextSecondary"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvSubtotal"
+                            android:text="Rp0"
+                            android:textColor="@color/colorOnBackground"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    
+                    <!-- Pajak -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Pajak (Rp)"
+                            android:textColor="#AAAAAA"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/edtPajak"
+                            android:hint="0"
+                            android:textColor="#555555"
+                            android:textColorHint="#555555"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:minWidth="60dp"
+                            android:inputType="number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Service -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Servis (Rp)"
+                            android:textColor="#AAAAAA"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/edtService"
+                            android:hint="0"
+                            android:textColor="#555555"
+                            android:textColorHint="#555555"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:minWidth="60dp"
+                            android:inputType="number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    
+                    <!-- Diskon -->
+                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Diskon"
+                            android:textColor="#AAAAAA"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/edtDiskon"
+                            android:hint="0"
+                            android:textColor="#555555"
+                            android:textColorHint="#555555"
+                            android:background="@null"
+                            android:gravity="end"
+                            android:minWidth="60dp"
+                            android:inputType="number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    
+                    <View
+                         android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#333333"
+                        android:layout_marginVertical="8dp"/>
+                        
+                    <!-- Total -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="24dp">
+                        <TextView
+                            android:text="Jumlah total"
+                            android:textColor="@color/colorTextSecondary"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvTotalAkhir"
+                            android:text="Rp0"
+                            android:textColor="@color/colorOnBackground"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    
+                    <!-- Button Ubah Rincian -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTambahManual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ubah rincian"
+                        android:textColor="@color/colorOnBackground"
+                        android:textAllCaps="false"
+                        android:backgroundTint="@color/colorDivider"
+                        app:icon="@android:drawable/ic_menu_edit"
+                        app:iconTint="@color/colorOnBackground"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLanjut"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:text="Konfirmasi"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorOnPrimary"
+        android:textStyle="bold"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

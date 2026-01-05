@@ -1,0 +1,27 @@
+.gradle
+.idea
+*.iml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+bin/
+gen/
+out/
+*.log
+*.nav
+*.orig
+*.rej
+*.swp
+*~
+.settings/
+
+# Project exclude paths
+/app/build/
